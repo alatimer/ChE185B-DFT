@@ -12,3 +12,18 @@ will add the files you've changed to git, commit them, and push:
 "git commit -m 'comments on what you have changed since your previous push in
 quotes'"
 "git push"
+
+getting ase+catmap to work:
+
+Add the following to your bash_profile:
+
+export PATH="/Users/allegralatimer/che185b-drm/ase/tools:$PATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/ase:$PYTHONPATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/catmap:$PYTHONPATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/mpmath-all-0.19:$PYTHONPATH"
+
+type "source .bash_profile" into command line
+
+type "ase -m test.py" into command line. If at the end it says, "OK" you are set up with ase!
+If there is an error, you are not set up.
+
