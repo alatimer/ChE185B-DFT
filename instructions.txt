@@ -1,0 +1,14 @@
+Hi there!
+
+We will attempt to use github for our calculations
+since google drive on a unix system is not very
+well supported.
+
+Here's what we will be doing:
+
+When you are done with a script you would like me to run, you 
+will add the files you've changed to git, commit them, and push:
+"git add <files>"
+"git commit -m 'comments on what you have changed since your previous push in
+quotes'"
+"git push"
