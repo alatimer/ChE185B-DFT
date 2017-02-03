@@ -18,9 +18,9 @@ getting ase+catmap to work:
 Add the following to your bash_profile:
 
 export PATH="/Users/allegralatimer/che185b-drm/ase/tools:$PATH"
-export PYTHONPATH="/Users/allegralatimer/che185b-drm/ase:$PYTHONPATH"
-export PYTHONPATH="/Users/allegralatimer/che185b-drm/catmap:$PYTHONPATH"
-export PYTHONPATH="/Users/allegralatimer/che185b-drm/mpmath-all-0.19:$PYTHONPATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/src/ase:$PYTHONPATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/src/catmap:$PYTHONPATH"
+export PYTHONPATH="/Users/allegralatimer/che185b-drm/src/mpmath-all-0.19:$PYTHONPATH"
 
 replace my name with yours; or if you installed somewhere else replace the whole root
 
