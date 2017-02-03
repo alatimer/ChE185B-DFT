@@ -11,4 +11,4 @@ will add the files you've changed to git, commit them, and push:
 "git add <files>"
 "git commit -m 'comments on what you have changed since your previous push in
 quotes'"
-"git push -u"
+"git push"
