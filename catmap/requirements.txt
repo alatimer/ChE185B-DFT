@@ -1,5 +1,0 @@
-numpy
-mpmath
-matplotlib
-scipy
-ase
