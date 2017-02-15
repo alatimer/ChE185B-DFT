@@ -1,5 +1,5 @@
 # input all necessary steps here (example is shown)
-# Updated 2/10
+# Updated 2/14
 rxn_expressions = [
 
                 'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 
@@ -7,8 +7,7 @@ rxn_expressions = [
                 'CH3_s + *_h <-> CH2-H_s + *_h <-> CH2_s + H_h',
                 'CH2_s + *_h <-> CH-H_s + *_h <-> CH_s + H_h',
                 'CH_s + *_h <-> C-H_s + *_h <-> C_s + H_h',
-                'C_s + O_s <-> C-O_s + *_s',
-                'CO_s <-> CO_g + *_s',
+                'C_s + O_s <-> C-O_s + *_s <-> CO_g + 2*_s',
                 '2H_h <-> H2_g + 2*_h'
 
                    ]
@@ -18,30 +17,22 @@ surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni','Cu']
 
 descriptor_names = ['C_s','O_s']
 #range you want descriptors to run from
-
-#x and y bounds for our descriptors being mapped
 descriptor_ranges = [[0,8],[-3,5]]
-
 
 #on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
 resolution = 7
 
 #what temperature is DRM usually done at
-#what temp do you want to model?
-temperature = 523
+#Guo, J., Lou, H., Zhao, H., Chai, D., & Zheng, X. (2004). Dry reforming of methane over nickel catalysts supported on magnesium aluminate spinels. Applied Catalysis A: General, 273(1), 75–82. https://doi.org/10.1016/j.apcata.2004.06.014
+temperature = 750
 
 #partial pressures of all species; defining all gas species in your system in atm; you can look into publicatinos to find out 
-#change the methane of your signficant reactants (methane and carbon dioxide) --> look in publications to see what ratio is used for ratios of carbon dioxide to methane, then look at the overall pressure of your system and divide (look into the Ni:Co paper)
+#see above citation
 species_definitions = {}
-species_definitions['CH4_g'] = {'pressure':0.31}
-#species_definitions['CH3OH_g'] = {'pressure':0.01}
-#species_definitions['CH2O_g'] = {'pressure':0.01}
+species_definitions['CH4_g'] = {'pressure':0.49}
+species_definitions['CO2_g'] = {'pressure':0.49}
 species_definitions['CO_g'] = {'pressure':0.01}
-species_definitions['CO2_g'] = {'pressure':0.01}
 species_definitions['H2_g'] = {'pressure':0.01}
-#species_definitions['O2_g'] = {'pressure':0.62}
-species_definitions['H2O_g'] = {'pressure':0.02}
-
 
 #h sites are included because we assume H does not take up a full site
 species_definitions['s'] = {'site_names':['111'], 'total':1.0}
@@ -51,12 +42,11 @@ data_file = 'methanol.pkl'
 input_file = 'energies.txt'
 
 # Leave this the same - but this is stating how do I want to treat the entropy corrections of the gas state species and the adsorbate species; we assumed frozen adsorbates (no entropic contributions from the adsorbate species); we also assumed that all of our gasses had the same entropy - but the shomate entropy will make sure to account for this
-# Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant 
+# Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant
+
 gas_thermo_mode = 'shomate_gas'
 adsorbate_thermo_mode = 'frozen_adsorbate'
-
 estimate_frequencies = False
-
 
 #dictionary for storing TS scaling coeffs. Keys are arbitrary
 #but must match definition provided in scaling_constraint_dict.
@@ -71,21 +61,17 @@ scaling_constraint_dict = {
                     'CH2-H_s':'final_state',
                     'CH-H_s':'final_state',
                     'C-H_s':'final_state',
+                    'CO-O_s':'final_state',
+                    'C-O_s':'initial_state',
                     
-                    'O_s': [0,'+',None],
-                    'OH_s': [0,'+',None],
-                    'C_s': ['+',0,None],
-                    'CO_s': ['+',0,None],
-                    'H_h': ['+',0,None],
-                    'CH3_s': ['+',0,None],
-                    'CH2_s': ['+',0,None],
-                    'CH_s': ['+',0,None],
-                    'CH3O_s': [0,'+',None],
-                    'CH2O_s': [0.25,0.5,None],
-                    'CHO_s': ['+',0,None],
-                    'CH2OH_s': ['+',0,None],
-                    'CHOH_s': ['+',0,None],
-                    'COH_s': ['+',0,None],
+                	'C_s': ['+',0,None],
+                	'CH3_s': ['+',0,None],
+                	'CH2_s': ['+',0,None],
+                	'CH_s': ['+',0,None],
+                	'H_h': ['+',0,None],
+
+                	'O_s': [0,'+',None],
+                	'CO_s': [0,'+',None]
                                         
                     # '+' -> constrain positive
                     # '-' -> constrain negative
@@ -98,37 +84,6 @@ scaling_constraint_dict = {
                     #should be a list of len(descriptors)+1
                     #which defines the constraint on each descriptor
                     #coefficient and the intercept
-
-                    #Constrain to scale with C (positive slope)
-                    #'C_f': ['+',0,None],
-                    #'CO_s': ['+',0,None],
-                    #'C--O_s': ['+',0,None],
-                    #'CO_t': ['+',0,None],
-                    #'H_h': ['+',0,None],
-                    #'CH_f': ['+',0,None],
-                    #'CH2_t': ['+',0,None],
-                    #'CH2': ['+',0,None],
-                    #'CH3_t': ['+',0,None],
-                    #'CH3': ['+',0,None],
-                    #Constrain to scale with O (positive slope)
-                    #'OH_s': [0,'+',None],
-                    #'O_s': [0,'+',None],
-
-                    #Several possibilities exist for scaling transition-states
-
-                    #fit to combination of other states (2*H_h here)
-                    #'H-H_h': 'TS(H_h+H_h)',
-                    #'C-O_s': 'final_state',
-                    #'C-OH_t': 'final_state',
-                    #'CH-O_s': 'final_state',
-
-                    #specify explicitly
-                    #'H-C_f': 'TS(C_f+H_h):[0.927,1.147]',
-
-                    #reference pre-defined coefficients. string after : must
-                    #be key to transition_state_scaling_parameters.
-                    #see transition_state_scaling_parameters for coeff values
-                    #'H-CH_f': 'TS(CH_f+H_h):CH-H',
 
                     #specify slope only, but fit intercept. This is useful
                     #for using slopes from literature when you are unsure about
@@ -152,8 +107,7 @@ max_rootfinding_iterations = 100
 max_bisections = 5
 
 #List here range (0:X) where X is last elementary reaction you have
-#We will have like 8
-rxn_mechanisms = {'methanol':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]}
+rxn_mechanisms = {'methane':[0,1,2,3,4,5,6,7]}
 
 
 
