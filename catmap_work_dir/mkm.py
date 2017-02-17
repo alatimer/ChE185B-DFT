@@ -36,7 +36,7 @@ font.set_weight('bold')
 
 
 #change to reflect your descriptors
-descriptor_labels = ['$\mathbf{Temperature (K)}$', '$\mathbf{log(Pressure)}$']
+descriptor_labels = ['$\mathbf{C}$', '$\mathbf{O}$']
 adjust_kwargs = {'left':0.2,'right':0.8,'bottom':0.2}
 
 ###### Run MKM ########
@@ -65,12 +65,12 @@ vm.plot(save='pretty_production_rate.pdf')
 #example of how to plot TOF for one product
 vm.plot_variable = 'production_rate'
 vm.log_scale = True
-vm.min = 1e-7
+vm.min = 1e-25
 vm.max = 1e0
-vm.include_labels = ['CO2_g']
+vm.include_labels = ['CO_g']
 vm.subplots_adjust_kwargs = adjust_kwargs 
-fig = vm.plot(save='CO2_g.pdf')
-custom_fig(fig, '$\mathbf{CO_2 TOF}$','CO2_tof.pdf')
+fig = vm.plot(save='CO_g.pdf')
+custom_fig(fig, '$\mathbf{CO TOF}$','CO_tof.pdf')
 
 #example of how to plot selectivity to a product
 vm.plot_variable = 'carbon_selectivity'

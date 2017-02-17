@@ -15,7 +15,7 @@ rxn_expressions = [
 
 #change to reflect your surfaces
 #surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni','Cu']
-surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt']
+surface_names = ['Rh', 'Au', 'Ag', 'Pd', 'Pt']
 
 descriptor_names = ['C_s','O_s']
 #range you want descriptors to run from
@@ -40,7 +40,7 @@ species_definitions['s'] = {'site_names':['111'], 'total':1.0}
 species_definitions['h'] = {'total':1.0, 'site_names':['111']}
 
 data_file = 'DRM.pkl'
-input_file = 'energies_drm.txt'
+input_file = 'energies.txt'
 
 # Leave this the same - but this is stating how do I want to treat the entropy corrections of the gas state species and the adsorbate species; we assumed frozen adsorbates (no entropic contributions from the adsorbate species); we also assumed that all of our gasses had the same entropy - but the shomate entropy will make sure to account for this
 # Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant
