@@ -1,5 +1,5 @@
 # input all necessary steps here (example is shown)
-# Updated 2/14
+# Updated 2/17
 rxn_expressions = [
 
                 'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 
@@ -7,8 +7,9 @@ rxn_expressions = [
                 'CH3_s + *_h <-> CH2-H_s + *_h <-> CH2_s + H_h',
                 'CH2_s + *_h <-> CH-H_s + *_h <-> CH_s + H_h',
                 'CH_s + *_h <-> C-H_s + *_h <-> C_s + H_h',
-                'C_s + O_s <-> C-O_s + *_s <-> CO_g + 2*_s',
-                '2H_h <-> H2_g + 2*_h'
+                'C_s + O_s <-> C-O_s + *_s <-> CO_s + *_s',
+                'CO_s <-> CO_g + *_s',
+                '2H_h <-> H-H_h + *_h <-> H2_g + 2*_h'
 
                    ]
 
@@ -24,7 +25,6 @@ descriptor_ranges = [[0,8],[-3,5]]
 resolution = 7
 
 #what temperature is DRM usually done at
-#Guo, J., Lou, H., Zhao, H., Chai, D., & Zheng, X. (2004). Dry reforming of methane over nickel catalysts supported on magnesium aluminate spinels. Applied Catalysis A: General, 273(1), 75–82. https://doi.org/10.1016/j.apcata.2004.06.014
 temperature = 750
 
 #partial pressures of all species; defining all gas species in your system in atm; you can look into publicatinos to find out 
@@ -39,8 +39,8 @@ species_definitions['H2_g'] = {'pressure':0.01}
 species_definitions['s'] = {'site_names':['111'], 'total':1.0}
 species_definitions['h'] = {'total':1.0, 'site_names':['111']}
 
-data_file = 'methanol.pkl'
-input_file = 'energies.txt'
+data_file = 'DRM.pkl'
+input_file = 'energies_drm.txt'
 
 # Leave this the same - but this is stating how do I want to treat the entropy corrections of the gas state species and the adsorbate species; we assumed frozen adsorbates (no entropic contributions from the adsorbate species); we also assumed that all of our gasses had the same entropy - but the shomate entropy will make sure to account for this
 # Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant
@@ -64,6 +64,7 @@ scaling_constraint_dict = {
                     'C-H_s':'final_state',
                     'CO-O_s':'final_state',
                     'C-O_s':'initial_state',
+                    'H-H_h':'initial_state',
                     
                 	'C_s': ['+',0,None],
                 	'CH3_s': ['+',0,None],
