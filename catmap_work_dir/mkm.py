@@ -77,18 +77,22 @@ vm.plot_variable = 'carbon_selectivity'
 vm.log_scale = True
 vm.min = 1e-5
 vm.max = 1
-vm.include_labels = ['CH2O_g']
+vm.include_labels = ['CO_g']
 vm.subplots_adjust_kwargs = adjust_kwargs 
-fig = vm.plot(save='CH2O_sel.pdf')
-custom_fig(fig, '$\mathbf{CH_2O Selectivity}$','CH2O_sel.pdf')
-
+fig = vm.plot(save='CO_sel.pdf')
+custom_fig(fig, '$\mathbf{CO Selectivity}$','CO_sel.pdf')
 
 #example of how to plot coverage of a single adsorbate
 vm.plot_variable = 'coverage'
 vm.log_scale = True
 vm.min = 1e-2
 vm.max = 0.5
-vm.include_labels = ['O_c']
+vm.include_labels = ['C_s']
 vm.subplots_adjust_kwargs = adjust_kwargs 
-fig = vm.plot(save='O_c.pdf')
-custom_fig(fig, '$\mathbf{O_{c} Coverage}$','O_c.pdf')
+fig = vm.plot(save='C_s.pdf')
+custom_fig(fig, '$\mathbf{C_{s} Coverage}$','C_s.pdf')
+
+vm.include_labels = ['O_s']
+vm.subplots_adjust_kwargs = adjust_kwargs 
+fig = vm.plot(save='O_s.pdf')
+custom_fig(fig, '$\mathbf{O_{s} Coverage}$','O_s.pdf')
