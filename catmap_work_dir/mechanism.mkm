@@ -1,5 +1,5 @@
 # input all necessary steps here (example is shown)
-# Updated 2/17
+# Updated 2/21
 rxn_expressions = [
 
                 'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 
@@ -14,18 +14,18 @@ rxn_expressions = [
                    ]
 
 #change to reflect your surfaces
-#surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni','Cu']
-surface_names = ['Rh', 'Au', 'Ag', 'Pd', 'Pt']
+surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni','Cu']
+#surface_names = ['Rh', 'Au', 'Ag', 'Pd', 'Pt']
 
 descriptor_names = ['C_s','O_s']
 #range you want descriptors to run from
 descriptor_ranges = [[0,8],[-3,5]]
 
 #on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
-resolution = 7
+resolution = 25
 
 #what temperature is DRM usually done at
-temperature = 750
+temperature = 1000
 
 #partial pressures of all species; defining all gas species in your system in atm; you can look into publicatinos to find out 
 #see above citation
