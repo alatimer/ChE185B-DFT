@@ -14,7 +14,7 @@ rxn_expressions = [
                    ]
 
 #change to reflect your surfaces
-surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt']
+surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt','Ni','Cu']
 #surface_names = ['Rh', 'Au', 'Ag', 'Pd', 'Pt']
 
 descriptor_names = ['C_s','O_s']
