@@ -43,7 +43,7 @@ adjust_kwargs = {'left':0.2,'right':0.8,'bottom':0.2}
 mkm_file = 'mechanism.mkm'
 #mkm_file = 'mechanism.log'
 model = ReactionModel(setup_file=mkm_file)
-model.output_variables += ['rate','production_rate','rate_control', 'free_energy', 'electronic_energy','forward_rate_constant','reverse_rate_constant','carbon_selectivity']
+model.output_variables += ['rate','production_rate','rate_control', 'free_energy', 'electronic_energy','forward_rate_constant','reverse_rate_constant','carbon_selectivity','coverage']
 model.run()
 
 ##### Model Analysis ######
@@ -54,6 +54,12 @@ vm.log_scale = True #rates should be plotted on a log-scale
 vm.min = 1e-25 #minimum rate to plot
 vm.max = 1e3 #maximum rate to plot
 fig = vm.plot(save='rate.pdf') #draw the plot and save it as "rate.pdf"
+
+vm.plot_variable = 'coverage' #tell the model which output to plot
+vm.log_scale = True #rates should be plotted on a log-scale
+vm.min = 1e-5 #minimum rate to plot
+vm.max = 1 #maximum rate to plot
+fig = vm.plot(save='coverage.pdf') #draw the plot and save it as "coverage.pdf"
 
 vm.production_rate_map = model.production_rate_map #attach map
 vm.threshold = 1e-30 #do not plot rates below this
@@ -87,6 +93,7 @@ vm.plot_variable = 'coverage'
 vm.log_scale = True
 vm.min = 1e-2
 vm.max = 0.5
+
 vm.include_labels = ['C_s']
 vm.subplots_adjust_kwargs = adjust_kwargs 
 fig = vm.plot(save='C_s.pdf')
@@ -96,3 +103,5 @@ vm.include_labels = ['O_s']
 vm.subplots_adjust_kwargs = adjust_kwargs 
 fig = vm.plot(save='O_s.pdf')
 custom_fig(fig, '$\mathbf{O_{s} Coverage}$','O_s.pdf')
+
+
