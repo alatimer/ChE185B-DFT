@@ -27,10 +27,9 @@ import math
 import sys
 
 Mtl='Ni'
-a0=4.80 ##starting guesses for lattice constants
-c0=6.84
+a0=2.5 ##starting guesses for lattice constant
 
-x0=[a0,c0]  ##pack up vaariables to optimize over to pass to solver
+x0=[a0]  ##pack up vaariables to optimize over to pass to solver (in this case there is only one)
 iter = 0
 logfile = open('lattice_opt.log','a')
 logfile.write('Energy\ta\tb\tc\n')
@@ -59,15 +58,11 @@ def get_energy(x):
         output = {'removesave': True,},
         )
 
-    #atoms=read('init.traj')
-    atoms = build.bulk(Mtl,crystalstructure='fcc')#,a=x[0],c=x[1])
-    #a = x[0]; b= x[0]; c=x[1] 
-    #a_vec=np.array([1,0,0])*a
-    #b_vec=np.array([-math.sin(math.pi/6),math.cos(math.pi/6),0])*b
-    #c_vec=np.array([0,0,1])*c
-
-    #atoms.set_cell(cell=[a_vec,b_vec,c_vec],scale_atoms=True)
+    atoms = build.bulk(Mtl,crystalstructure='fcc',a=x[0])  #make a fcc unit cell with new lattice vector
+    for atom in atoms:
+        atom.magmom=2
     atoms_list.append(atoms)
+
     atoms.set_calculator(calc)
     write('out.traj',atoms_list)
 
