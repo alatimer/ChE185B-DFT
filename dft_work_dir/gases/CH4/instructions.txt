@@ -1,0 +1,3 @@
+using co2 and h2 as examples, decide what the coordinates should be 
+in the ch4 script (ie where all the atoms should be intialized)
+based on geometry of sp3 molecules and bond experimental bond lengths
