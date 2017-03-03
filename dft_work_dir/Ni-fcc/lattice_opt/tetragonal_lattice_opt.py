@@ -12,8 +12,8 @@
 
 
 import sys
-path='/home/alatimer/che185b-drm/src/ase'
-sys.path.insert(0,path)
+#path='/home/alatimer/che185b-drm/src/ase'
+#sys.path.insert(0,path)
 from ase import build
 #import structures
 from scipy.optimize import *
@@ -32,7 +32,7 @@ a0=2.5 ##starting guesses for lattice constant
 x0=[a0]  ##pack up vaariables to optimize over to pass to solver (in this case there is only one)
 iter = 0
 logfile = open('lattice_opt.log','a')
-logfile.write('Energy\ta\tb\tc\n')
+logfile.write('Energy\ta\n')
 logfile.close()
 atoms_list = []
 
@@ -60,7 +60,7 @@ def get_energy(x):
 
     atoms = build.bulk(Mtl,crystalstructure='fcc',a=x[0])  #make a fcc unit cell with new lattice vector
     for atom in atoms:
-        atom.magmom=2
+        atom.magmom=3
     atoms_list.append(atoms)
 
     atoms.set_calculator(calc)
@@ -68,7 +68,7 @@ def get_energy(x):
 
     energy = atoms.get_potential_energy()
     logfile = open('lattice_opt.log','a')
-    logfile.write('%s\t%s\t%s\t%s\n' %(energy,a,b,c))
+    logfile.write('%s\t%s\n' %(energy,a))
     logfile.close()
     
     return energy
