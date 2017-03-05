@@ -1,9 +1,9 @@
 #!/home/vossj/suncat/bin/python
 
-#SBATCH -p iric
+#SBATCH -p owners
 #SBATCH --output=myjob.out
 #SBATCH --error=myjob.err
-#SBATCH --time=48:00:00                                 #default is 20 hours
+#SBATCH --time=2:00:00                                 #default is 20 hours
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4000
 #SBATCH --mail-type=END,FAIL                            #get emailed about job BEGIN, END, or FAIL
@@ -12,8 +12,8 @@
 
 
 import sys
-path='/home/alatimer/che185b-drm/src/ase'
-sys.path.insert(0,path)
+#path='/home/alatimer/che185b-drm/src/ase'
+#sys.path.insert(0,path)
 from ase import build
 #import structures
 from scipy.optimize import *
@@ -44,7 +44,7 @@ def get_energy(x):
     calc = espresso(pw=600, #while optimizing lattice, use high pw/dw and kpts. We will optimize these later.
         dw = 6000,
         kpts = (12,12,12),
-        nbands = -100,
+        nbands = -10,
         xc = 'RPBE',
         convergence = {'energy':1e-5,
                        'mixing':0.1,
@@ -64,11 +64,12 @@ def get_energy(x):
     atoms_list.append(atoms)
 
     atoms.set_calculator(calc)
-    write('out.traj',atoms_list)
+    write('out.traj',atoms)
+    a=x[0]
 
     energy = atoms.get_potential_energy()
     logfile = open('lattice_opt.log','a')
-    logfile.write('%s\t%s\t%s\t%s\n' %(energy,a,b,c))
+    logfile.write('%s\t%s\n' %(energy,a))
     logfile.close()
     
     return energy
