@@ -35,7 +35,7 @@ else:
     ##atoms.cell[2][2] += 15
 
 for atom in atoms:
-    atom.magmom = 4
+    atom.magmom = 3
 
 ######################### Calculator ##########################
 
