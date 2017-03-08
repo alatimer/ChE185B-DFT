@@ -1,6 +1,6 @@
 #!/home/vossj/suncat/bin/python
 
-####SBATCH -p iric
+#SBATCH -p iric
 #SBATCH --job-name=opt.py
 #SBATCH --output=myjob.out
 #SBATCH --error=myjob.err
@@ -8,7 +8,7 @@
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4000
 #SBATCH --mail-type=END,FAIL							#get emailed about job BEGIN, END, or FAIL
-#SBATCH  --mail-user = sanand94@stanford.edu
+####SBATCH --mail-user=sanand94@stanford.edu
 #SBATCH --ntasks-per-node=16 							#task to run per node; each node has 16 cores
 
 from ase.constraints import *
