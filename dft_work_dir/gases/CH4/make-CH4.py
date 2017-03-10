@@ -1,6 +1,6 @@
 #!/home/vossj/suncat/bin/python
 #above line selects special python interpreter needed to run espresso
-#SBATCH -p iric
+#SBATCH -p normal
 #################
 #set a job name
 #SBATCH --job-name=myjob
@@ -24,14 +24,14 @@
 #SBATCH --mail-type=ALL
 #################
 #who to send email to; please change to your email
-#SBATCH  --mail-user=alatimer@stanford.edu
+#SBATCH  --mail-user=sanand94@stanford.edu
 #################
 #task to run per node; each node has 16 cores
 #SBATCH --ntasks-per-node=16
 #################
 
 import sys
-path='/home/alatimer/che185b-drm/src/ase'
+path='/home/sanand94/che185b-drm/src/ase'
 sys.path.insert(0,path)
 
 from ase.optimize import QuasiNewton
@@ -45,13 +45,13 @@ c=a/2.
 d = 1.09 # exp bond length ch4
 #add coordinates where you should place C and 4 H's
 atoms = Atoms('CH4',positions=(
-    [],#add position C
-    [],#add position H1
-    [],# add position H2
-    [],# add position H3
-    [],# add position H4
+    [c,c,c],#add position C
+    [c,c,c+d],#add position H1
+    [c+1.0267,c,c-.363],# add position H2
+    [c-0.5134,c-.8892,c-.363],# add position H3
+    [c-0.5134,c-.8892,c-.363],# add position H4
     )
-                   magmoms=[0.0, 0.0,0.0,0.0],
+                   magmoms=[0.0,0.0,0.0,0.0],
                    cell=(a, a, a))
 
 calc = espresso(pw=600,	#plane-wave cutoff
