@@ -22,7 +22,7 @@ descriptor_names = ['C_s','O_s']
 descriptor_ranges = [[0,8],[-3,5]]
 
 #on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
-resolution = 13
+resolution = 25
 
 #what temperature is DRM usually done at
 temperature = 1123
