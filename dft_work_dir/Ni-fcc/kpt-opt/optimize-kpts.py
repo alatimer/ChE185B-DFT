@@ -12,8 +12,8 @@
 
 
 import sys
-path='/home/alatimer/che185b-drm/src/ase'
-sys.path.insert(0,path)
+#path='/home/alatimer/che185b-drm/src/ase'
+#sys.path.insert(0,path)
 from espresso import espresso
 from ase.io import read,write
 import numpy as np
@@ -23,8 +23,6 @@ logfile = open('kpts.log','w')
 logfile.write('Energy\tKpt\n')
 
 def get_energy(kpt):
-
-
     calc = espresso(pw=600, #while optimizing lattice, use high pw/dw and kpts. We will optimize these later.
         dw = 6000,
         kpts = (kpt,kpt,kpt),
