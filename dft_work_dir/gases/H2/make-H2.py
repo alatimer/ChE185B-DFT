@@ -1,6 +1,6 @@
 #!/home/vossj/suncat/bin/python
 #above line selects special python interpreter needed to run espresso
-#SBATCH -p iric
+#SBATCH -p normal
 #################
 #set a job name
 #SBATCH --job-name=myjob
@@ -24,14 +24,14 @@
 #SBATCH --mail-type=ALL
 #################
 #who to send email to; please change to your email
-#SBATCH  --mail-user=alatimer@stanford.edu
+#SBATCH  --mail-user=sanand94@stanford.edu
 #################
 #task to run per node; each node has 16 cores
 #SBATCH --ntasks-per-node=16
 #################
 
 import sys
-path='/home/alatimer/che185b-drm/src/ase'
+path='/home/sanand94/che185b-drm/src/ase'
 sys.path.insert(0,path)
 
 from ase.optimize import QuasiNewton
