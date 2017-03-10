@@ -46,7 +46,7 @@ input_file = 'energies.txt'
 # Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant
 
 gas_thermo_mode = 'shomate_gas'
-adsorbate_thermo_mode = 'frozen_adsorbate'
+adsorbate_thermo_mode = 'harmonic_adsorbate'
 estimate_frequencies = True
 
 #dictionary for storing TS scaling coeffs. Keys are arbitrary
