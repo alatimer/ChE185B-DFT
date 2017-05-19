@@ -49,9 +49,9 @@ atoms = Atoms('CH4',positions=(
     [c,c,c+d],#add position H1
     [c+1.0267,c,c-.363],# add position H2
     [c-0.5134,c-.8892,c-.363],# add position H3
-    [c-0.5134,c-.8892,c-.363],# add position H4
-    )
-                   magmoms=[0.0,0.0,0.0,0.0],
+    [c-0.5134,c+.8892,c-.363],# add position H4
+    ),
+                   magmoms=[0.0, 0.0,0.0,0.0,0.0],
                    cell=(a, a, a))
 
 calc = espresso(pw=600,	#plane-wave cutoff
