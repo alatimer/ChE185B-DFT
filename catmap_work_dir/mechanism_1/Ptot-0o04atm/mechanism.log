@@ -1,0 +1,405 @@
+from numpy import array
+
+import cPickle as pickle
+
+
+from mpmath import mpf 
+
+parser = None
+
+scaler = 'GeneralizedLinearScaler'
+
+thermodynamics = 'ThermoCorrections'
+
+solver = 'SteadyStateSolver'
+
+mapper = 'MinResidMapper'
+
+binary_data = pickle.load(open("DRM.pkl"))
+
+locals().update(binary_data)
+
+adsorbate_coefficient_matrix = array([[ 0.11385,  0.     , -0.5001 ],
+       [ 0.48469,  0.     ,  0.30748],
+       [ 0.21621,  0.     ,  0.32575],
+       [ 0.73756,  0.     , -0.23999],
+       [ 0.     ,  0.43068,  0.20916],
+       [ 1.     ,  0.     , -0.     ],
+       [ 0.     ,  1.     ,  0.     ]])
+
+adsorbate_interaction_model = 'ideal'
+
+adsorbate_interactions = None
+
+adsorbate_names = ('H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s')
+
+adsorbate_thermo_mode = 'frozen_adsorbate'
+
+analytical_jacobian = True
+
+atomic_reservoir_dict = {'H': 'H2_g', 'C': 'CO2_g', 'O': 'CO_g'}
+
+atomic_reservoir_list = [{'H': 'CH4_g', 'C': 'CO2_g', 'O': 'CO_g'}, {'H': 'H2_g', 'C': 'CH4_g', 'O': 'CO2_g'}, {'H': 'H2_g', 'C': 'CH4_g', 'O': 'CO_g'}, {'H': 'H2_g', 'C': 'CO2_g', 'O': 'CO_g'}]
+
+atoms_dict = {}
+
+avoid_scaling = False
+
+coefficient_matrix = array([[ 0.11385   ,  0.        , -0.5001    ],
+       [ 0.48469   ,  0.        ,  0.30748   ],
+       [ 0.21621   ,  0.        ,  0.32575   ],
+       [ 0.73756   ,  0.        , -0.23999   ],
+       [ 0.        ,  0.43068   ,  0.20916   ],
+       [ 1.        ,  0.        , -0.        ],
+       [ 0.        ,  1.        ,  0.        ],
+       [ 0.10784884,  0.        ,  0.11677471],
+       [ 1.05548672,  0.        ,  0.61229642],
+       [ 0.64722251,  0.64722251,  1.57165182],
+       [ 0.82998814,  0.        ,  0.15835921],
+       [ 0.60311627,  0.        ,  0.42968349],
+       [ 0.31336407,  0.        ,  0.59107518],
+       [ 0.        ,  0.82379862,  1.34951976]])
+
+coefficient_maxs = [[1e+99, 0.0, 1e+99], [1e+99, 0.0, 1e+99], [1e+99, 0.0, 1e+99], [1e+99, 0.0, 1e+99], [0.0, 1e+99, 1e+99], [1e+99, 0.0, 1e+99], [0.0, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99], [1e+99, 1e+99, 1e+99]]
+
+coefficient_mins = [[0, 0.0, -1e+99], [0, 0.0, -1e+99], [0, 0.0, -1e+99], [0, 0.0, -1e+99], [0.0, 0, -1e+99], [0, 0.0, -1e+99], [0.0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99], [0, 0, -1e+99]]
+
+coverage_headers = ['coverage', 'coadsorbate_coverage']
+
+data_file = 'DRM.pkl'
+
+decimal_precision = 100
+
+default_constraints = ['+', '+', None]
+
+default_interaction_constraints = None
+
+descriptor_decimal_precision = 2
+
+descriptor_dict = {'Ru': [1.852, -1.982], 'Ag': [5.68, 1.37], 'Pt': [2.16, 0.88], 'Ni': [0.9, -0.36], 'Au': [4.77, 1.92], 'Pd': [2.54, 0.86], 'Rh': [1.99, -0.15], 'Cu': [4.27, 0.38]}
+
+descriptor_names = ('C_s', 'O_s')
+
+descriptor_ranges = [[0, 8], [-3, 5]]
+
+echem_transition_state_names = []
+
+electrochemical_thermo_mode = 'simple_electrochemical'
+
+elementary_rxns = ([['CH4_g', 's', 'h'], ['CH3-H_s', 'h'], ['CH3_s', 'H_h']], [['CO2_g', 's', 's'], ['CO-O_s', 's'], ['CO_s', 'O_s']], [['CH3_s', 'h'], ['CH2-H_s', 'h'], ['CH2_s', 'H_h']], [['CH2_s', 'h'], ['CH-H_s', 'h'], ['CH_s', 'H_h']], [['CH_s', 'h'], ['C-H_s', 'h'], ['C_s', 'H_h']], [['C_s', 'O_s'], ['C-O_s', 's'], ['CO_s', 's']], [['CO_s'], ['CO_g', 's']], [['H_h', 'H_h'], ['H-H_h', 'h'], ['H2_g', 'h', 'h']])
+
+estimate_frequencies = False
+
+extrapolate_coverages = False
+
+fixed_entropy_dict = {'H2_g': 0.00135, 'other': 0.002}
+
+force_recalculation = False
+
+force_recompilation = False
+
+frequency_dict = {'H2_g': [], 'CO_g': [], 'CO_s': [], 'CH3-H_s': [], 'C-O_s': [], 'H-H_h': [], 'O_s': [], 's': [], 'CO-O_s': [], 'C-H_s': [], 'H_h': [], '*_g': [], '*_h': [], 'CH4_g': [], 'CH2_s': [], '*_s': [], 'CH3_s': [], 'CO2_g': [], 'CH_s': [], 'g': [], 'h': [], 'CH2-H_s': [], 'C_s': [], 'CH-H_s': []}
+
+frequency_surface_names = []
+
+frequency_unit_conversion = 0.0001239842
+
+gas_names = ('CH4_g', 'CO2_g', 'CO_g', 'H2_g')
+
+gas_pressures = [0.0196, 0.0196, 0.0004, 0.0004]
+
+gas_thermo_mode = 'shomate_gas'
+
+hbond_dict = {'OCHCH2': 0.0, 'C': 0.0, 'CH': 0.0, 'CO': -0.1, 'OH': -0.5, 'CHOH': -0.25, 'H': 0.0, 'OCHO': 0.0, 'O': 0.0, 'CHO': -0.1, 'OCH3': 0.0, 'CH2': 0.0, 'CH3': 0.0, 'COHOH': -0.25, 'OCH2O': 0.0, 'CH2OH': -0.25, 'CH2O': 0.0, 'COH': -0.25, 'COOH': -0.25, 'OCHCHO': 0.0}
+
+ideal_gas_params = {'H2_g': [2, 'linear', 0], 'CH3OH_g': [1, 'nonlinear', 0], 'C5H6O2_g': [1, 'nonlinear', 0], 'CO_g': [1, 'linear', 0], 'H2O_g': [2, 'nonlinear', 0], 'HCOOH_g': [1, 'nonlinear', 0], 'CH3CH2CHCH2_g': [1, 'nonlinear', 0], 'CH3CHCH2_g': [1, 'nonlinear', 0], 'O2_g': [2, 'linear', 1.0], 'N2_g': [2, 'linear', 0], 'CH3CH2OH_g': [1, 'nonlinear', 0], 'NH3_g': [3, 'nonlinear', 0], 'CH4_g': [12, 'nonlinear', 0], 'CH3CHO_g': [1, 'nonlinear', 0], 'CH2CH2_g': [4, 'nonlinear', 0], 'CH3CHCHCH3_g': [2, 'nonlinear', 0], 'CO2_g': [2, 'linear', 0], 'pe_g': [2, 'linear', 0], 'CH3CH3CCH2_g': [2, 'nonlinear', 0], 'C2H4_g': [4, 'nonlinear', 0], 'C5H4O2_g': [1, 'nonlinear', 0], 'C5H6O_g': [1, 'nonlinear', 0], 'CH2O_g': [2, 'nonlinear', 0], 'CH3COOH_g': [1, 'nonlinear', 0], 'C2H6_g': [6, 'nonlinear', 0]}
+
+input_file = 'energies.txt'
+
+interaction_fitting_mode = None
+
+interaction_surface_names = None
+
+internally_constrain_coverages = True
+
+max_bisections = 5
+
+max_initial_guesses = 3
+
+max_rootfinding_iterations = 100
+
+max_self_interaction = 'Pd'
+
+max_tolerance_iterations = 100
+
+model_name = 'mechanism'
+
+numerical_representation = 'mpmath'
+
+optimize_analytical_expressions = False
+
+output_labels = {'electronic_energy': ('CH4_g', 'CO2_g', 'CO_g', 'H2_g', 'H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s', 'H-H_h', 'C-H_s', 'C-O_s', 'CH-H_s', 'CH2-H_s', 'CH3-H_s', 'CO-O_s'), 'rate_control': [('CH4_g', 'CO2_g', 'CO_g', 'H2_g'), ('H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s', 'H-H_h', 'C-H_s', 'C-O_s', 'CH-H_s', 'CH2-H_s', 'CH3-H_s', 'CO-O_s')], 'forward_rate_constant': ([['CH4_g', 's', 'h'], ['CH3-H_s', 'h'], ['CH3_s', 'H_h']], [['CO2_g', 's', 's'], ['CO-O_s', 's'], ['CO_s', 'O_s']], [['CH3_s', 'h'], ['CH2-H_s', 'h'], ['CH2_s', 'H_h']], [['CH2_s', 'h'], ['CH-H_s', 'h'], ['CH_s', 'H_h']], [['CH_s', 'h'], ['C-H_s', 'h'], ['C_s', 'H_h']], [['C_s', 'O_s'], ['C-O_s', 's'], ['CO_s', 's']], [['CO_s'], ['CO_g', 's']], [['H_h', 'H_h'], ['H-H_h', 'h'], ['H2_g', 'h', 'h']]), 'carbon_selectivity': ('CH4_g', 'CO2_g', 'CO_g', 'H2_g'), 'rate': ([['CH4_g', 's', 'h'], ['CH3-H_s', 'h'], ['CH3_s', 'H_h']], [['CO2_g', 's', 's'], ['CO-O_s', 's'], ['CO_s', 'O_s']], [['CH3_s', 'h'], ['CH2-H_s', 'h'], ['CH2_s', 'H_h']], [['CH2_s', 'h'], ['CH-H_s', 'h'], ['CH_s', 'H_h']], [['CH_s', 'h'], ['C-H_s', 'h'], ['C_s', 'H_h']], [['C_s', 'O_s'], ['C-O_s', 's'], ['CO_s', 's']], [['CO_s'], ['CO_g', 's']], [['H_h', 'H_h'], ['H-H_h', 'h'], ['H2_g', 'h', 'h']]), 'production_rate': ('CH4_g', 'CO2_g', 'CO_g', 'H2_g'), 'coverage': ('H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s'), 'reverse_rate_constant': ([['CH4_g', 's', 'h'], ['CH3-H_s', 'h'], ['CH3_s', 'H_h']], [['CO2_g', 's', 's'], ['CO-O_s', 's'], ['CO_s', 'O_s']], [['CH3_s', 'h'], ['CH2-H_s', 'h'], ['CH2_s', 'H_h']], [['CH2_s', 'h'], ['CH-H_s', 'h'], ['CH_s', 'H_h']], [['CH_s', 'h'], ['C-H_s', 'h'], ['C_s', 'H_h']], [['C_s', 'O_s'], ['C-O_s', 's'], ['CO_s', 's']], [['CO_s'], ['CO_g', 's']], [['H_h', 'H_h'], ['H-H_h', 'h'], ['H2_g', 'h', 'h']]), 'free_energy': ('CH4_g', 'CO2_g', 'CO_g', 'H2_g', 'H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s', 'H-H_h', 'C-H_s', 'C-O_s', 'CH-H_s', 'CH2-H_s', 'CH3-H_s', 'CO-O_s')}
+
+output_variables = ['coverage', 'rate', 'rate', 'production_rate', 'rate_control', 'free_energy', 'electronic_energy', 'forward_rate_constant', 'reverse_rate_constant', 'carbon_selectivity', 'coverage']
+
+parameter_dict = {'H-H_h': [-0.5, 0.58, 0.93, 0.77, 0.515, 0.54, 0.0, 0.705], 'O_s': [-1.982, -0.15, 1.92, 1.37, 0.86, 0.88, -0.36, 0.38], 'CH2_s': [1.291, 1.35, 2.66, 3.04, 1.65, 1.21, 0.66, 2.31], 'CO-O_s': [0.17, 0.74, 3.4, 2.7, 1.8, 1.7, 0.89, 1.8], 'CH2-H_s': [1.49, 1.45, 3.43, 3.97, 1.925, 1.53, 1.34, 2.875], 'CO_s': [-0.32, -0.32, 1.38, 1.33, -0.12, 0.08, -0.02, 0.92], 'C_s': [1.852, 1.99, 4.77, 5.68, 2.54, 2.16, 0.9, 4.27], 'CH3-H_s': [1.1, 1.1, 2.2, 2.5, 1.1, 1.1, 1.3, 1.9], 'CH_s': [1.321, 1.24, 3.24, 4.01, 1.755, 1.23, 0.31, 2.795], 'C-O_s': [0.0, 4.26, 0.0, 8.7, 5.36, 5.36, 0.0, 6.42], 'H_h': [-0.5, -0.33, 0.17, 0.23, -0.395, -0.35, 0.0, -0.075], 'C-H_s': [2.321, 2.64, 5.84, 6.61, 3.155, 3.13, 1.71, 4.995], 'CH3_s': [0.79, 0.85, 1.33, 1.57, 0.925, 0.55, 0.54, 1.275], 'CH-H_s': [1.511, 2.05, 4.26, 4.94, 2.25, 1.8, 1.0, 3.51]}
+
+parameter_mode = 'formation_energy'
+
+parameter_names = ('H_h', 'CH2_s', 'CH3_s', 'CH_s', 'CO_s', 'C_s', 'O_s', 'H-H_h', 'C-H_s', 'C-O_s', 'CH-H_s', 'CH2-H_s', 'CH3-H_s', 'CO-O_s')
+
+parse_headers = ['formation_energy', 'frequencies']
+
+perturbation_size = 1e-14
+
+prefactor_list = ['kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h']
+
+pressure_mode = 'static'
+
+products = ['CO_g', 'H2_g']
+
+reactants = ['CH4_g', 'CO2_g']
+
+required_headers = ['species_name', 'surface_name', 'site_name', 'formation_energy', 'frequencies', 'reference']
+
+residual_threshold = 0.9
+
+resolution = [8, 8]
+
+rxn_expressions = ['CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 'CO2_g + 2*_s <-> CO-O_s + *_s <-> CO_s + O_s', 'CH3_s + *_h <-> CH2-H_s + *_h <-> CH2_s + H_h', 'CH2_s + *_h <-> CH-H_s + *_h <-> CH_s + H_h', 'CH_s + *_h <-> C-H_s + *_h <-> C_s + H_h', 'C_s + O_s <-> C-O_s + *_s <-> CO_s + *_s', 'CO_s <-> CO_g + *_s', '2H_h <-> H-H_h + *_h <-> H2_g + 2*_h']
+
+rxn_mechanisms = {'methane': [0, 1, 2, 3, 4, 5, 6, 7]}
+
+rxn_options_dict = {'beta': {}, 'prefactor': {}}
+
+scaling_constraint_dict = {'CO_s': [0, '+', None], 'CH3-H_s': 'final_state', 'CH_s': ['+', 0, None], 'C-O_s': 'initial_state', 'CH3_s': ['+', 0, None], 'H-H_h': 'initial_state', 'O_s': [0, '+', None], 'CH2-H_s': 'final_state', 'CH2_s': ['+', 0, None], 'CO-O_s': 'final_state', 'C-H_s': 'final_state', 'C_s': ['+', 0, None], 'H_h': ['+', 0, None], 'CH-H_s': 'final_state'}
+
+search_directions = [[0, 0], [0, 1], [1, 0], [0, -1], [-1, 0], [-1, 1], [1, 1], [1, -1], [-1, -1]]
+
+setup_file = 'mechanism.mkm'
+
+shomate_params = {'HNO3_g:298-1200': [19.63229, 153.9599, -115.8378, 32.87955, -0.249114, -146.8818, 247.7049, -134.306], 'CH4_g:298-1300': [-0.703029, 108.4773, -42.52157, 5.862788, 0.678565, -76.84376, 158.7163, -74.8731], 'C5H4O2_g:100-1500': [-16.36694, 0.46958, -0.000331925, 8.50912e-08, 198590.9145, -1661.34999, -15.68938, 12461.34999], 'CH2CH2_g:298-1200': [-6.38788, 184.4019, -112.9718, 28.49593, 0.31554, 48.17332, 163.1568, 52.46694], 'HCN_g:298-1200': [32.69373, 22.59205, -4.369142, -0.407697, -0.282399, 123.4811, 233.2597, 135.1432], 'N2_g:100-500': [28.98641, 1.853978, -9.647459, 16.63537, 0.000117, -8.671914, 226.4168, 0.0], 'O2_g:2000-6000': [20.91111, 10.72071, -2.020498, 0.146449, 9.245722, 5.337651, 237.6185, 0.0], 'CO2_g:1200-6000': [58.16639, 2.720075, -0.492289, 0.038844, -6.447293, -425.9186, 263.6125, -393.5224], 'H2_g:1000-2500': [18.563083, 12.257357, -2.859786, 0.268238, 1.97799, -1.147438, 156.288133, 0], 'HNO2_g:298-1200': [24.89974, 91.37563, -64.84614, 17.92007, -0.134737, -88.13596, 254.2671, -76.73498], 'NO_g:298-1200': [23.83491, 12.58878, -1.139011, -1.497459, 0.214194, 83.35783, 237.1219, 90.29114], 'NH3_g:298-1400': [19.99563, 49.77119, -15.37599, 1.921168, 0.189174, -53.30667, 203.8591, -45.89806], 'N2_g:500-2000': [19.50583, 19.88705, -8.598535, 1.369784, 0.527601, -4.935202, 212.39, 0.0], 'O2_g:100-700': [31.32234, -20.23531, 57.8664, -36.50624, -0.007374, -8.903471, 246.7945, 0.0], 'CO_g:1300-1600': [35.1507, 1.300095, -0.205921, 0.01355, -3.28278, -127.8375, 231.712, -110.5271], 'CH2O_g:298-1500': [5.193767, 93.23249, -44.85457, 7.882279, 0.551175, -119.3591, 202.4663, -115.8972], 'CH4_g:1300-1600': [85.81217, 11.26467, -2.114146, 0.13819, -26.42221, -153.5327, 224.4143, -74.8731], 'C5H6O2_g:100-1500': [-18.57626, 0.50733, -0.000335824, 8.28263e-08, 231619.2141, -6357.53523, 2.75692, 7057.53523], 'H2O_g:1700-6000': [41.96426, 8.622053, -1.49978, 0.098119, -11.15764, -272.1797, 219.7809, -241.8264], 'H2_g:2500-6000': [43.41356, -4.293079, 1.272428, -0.096876, -20.533862, -38.515158, 162.081354, 0], 'H2_g:298-1000': [33.066178, -11.363417, 11.432816, -2.772874, -0.158558, -9.980797, 172.707974, 0], 'NO3_g:298-1200': [11.22316, 166.3889, -148.4458, 47.40598, -0.176791, 61.00858, 221.7679, 71.128], 'C5H6O_g:50-1500': [1.26847, 0.35388, -0.000173962, 2.87427e-08, 48401.71207, -5691.94893, -85.38991, 7191.94893], 'CO_g:298-1300': [25.56759, 6.09613, 4.054656, -2.671201, 0.131021, -118.0089, 227.3665, -110.5271], 'O2_g:700-2000': [30.03235, 8.772972, -3.988133, 0.788313, -0.741599, -11.32468, 236.1663, 0.0], 'H2O_g:500-1700': [30.092, 6.832514, 6.793435, -2.53448, 0.082139, -250.881, 223.3967, -241.8264], 'CH3CH2OH_g:298-1500': [-4.7367880805894265, 271.96181550301463, -169.34946529216657, 43.73860153608533, 0.24643430702178773, -9.828280829187861, 203.3325622617075, 0.0], 'CH3CHO_g:298-1500': [4.8037386340099095, 185.92002366990326, -99.1084610902012, 20.61473919069016, 0.2770802548558646, -8.566600040790945, 220.00244674443837, 0.0], 'N2O_g:298-1400': [27.67988, 51.14898, -30.64454, 6.847911, -0.157906, 71.24934, 238.6164, 82.04824], 'HCOOH_g:298-1500': [3.802752304225226, 153.66217894746168, -84.64046773816926, 16.297377707561505, 0.2772064997263338, -6.16527, 212.9698972559699, 0], 'NO2_g:298-1200': [16.10857, 75.89525, -54.3874, 14.30777, 0.239423, 26.17464, 240.5386, 33.09502], 'CO2_g:298-1200': [24.99735, 55.18696, -33.69137, 7.948387, -0.136638, -403.6075, 228.2431, -393.5224], 'H2O_g:100-500': [36.303952, -24.11232, 63.64111, -38.9524, -0.01385, -10.23966, 237.39431, 0.0], 'CH3OH_g:298-1500': [-1.0845814245433651, 153.2463565199489, -79.53050359618254, 16.47130239316011, 0.5220334601533215, -4.897417024069, 199.1893745506112, 0.0]}
+
+site_names = ('h', 's', 'g')
+
+species_definitions = {'H2_g': {'n_sites': 0, 'pressure': 0.0004, 'formation_energy': 0.0, 'name': 'H2', 'frequencies': [], 'formation_energy_source': 'This Work, BEEF-vdw', 'type': 'gas', 'composition': {'H': 2}, 'site': 'g'}, 'CO_g': {'n_sites': 0, 'pressure': 0.0004, 'formation_energy': 1.28, 'name': 'CO', 'frequencies': [], 'formation_energy_source': 'This Work, BEEF-vdw', 'type': 'gas', 'composition': {'C': 1, 'O': 1}, 'site': 'g'}, '*_g': {'n_sites': 0, 'formation_energy': 0, 'name': 'g', 'frequencies': [], 'site': 'g', 'total': 0, 'type': 'site', 'composition': {}, 'site_names': ['gas']}, '*_h': {'n_sites': 1, 'formation_energy': 0, 'name': 'h', 'frequencies': [], 'site': 'h', 'total': 1.0, 'type': 'site', 'composition': {}, 'site_names': ['111']}, 'CH4_g': {'n_sites': 0, 'pressure': 0.0196, 'formation_energy': 0.0, 'name': 'CH4', 'frequencies': [], 'formation_energy_source': 'This Work, BEEF-vdw', 'type': 'gas', 'composition': {'H': 4, 'C': 1}, 'site': 'g'}, 'CO_s': {'n_sites': 1, 'formation_energy': [-0.32, -0.32, 1.38, 1.33, -0.12, 0.08, -0.02, 0.92], 'name': 'CO', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'C': 1, 'O': 1}}, 'CH3-H_s': {'n_sites': 1, 'formation_energy': [1.1, 1.1, 2.2, 2.5, 1.1, 1.1, 1.3, 1.9], 'name': 'CH3-H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'H': 4, 'C': 1}}, '*_s': {'n_sites': 1, 'formation_energy': 0, 'name': 's', 'frequencies': [], 'site': 's', 'total': 1.0, 'type': 'site', 'composition': {}, 'site_names': ['111']}, 'C-O_s': {'n_sites': 1, 'formation_energy': [0.0, 4.26, 0.0, 8.7, 5.36, 5.36, 0.0, 6.42], 'name': 'C-O', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'C': 1, 'O': 1}}, 'CH3_s': {'n_sites': 1, 'formation_energy': [0.79, 0.85, 1.33, 1.57, 0.925, 0.55, 0.54, 1.275], 'name': 'CH3', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'H': 3, 'C': 1}}, 'CO2_g': {'n_sites': 0, 'pressure': 0.0196, 'formation_energy': 0.0, 'name': 'CO2', 'frequencies': [], 'formation_energy_source': 'This Work, BEEF-vdw', 'type': 'gas', 'composition': {'C': 1, 'O': 2}, 'site': 'g'}, 'H-H_h': {'n_sites': 1, 'formation_energy': [-0.5, 0.58, 0.93, 0.77, 0.515, 0.54, 0.0, 0.705], 'name': 'H-H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 'h', 'type': 'transition_state', 'composition': {'H': 2}}, 'g': {'n_sites': 0, 'formation_energy': 0, 'name': 'g', 'frequencies': [], 'site': 'g', 'total': 0, 'type': 'site', 'composition': {}, 'site_names': ['gas']}, 'O_s': {'n_sites': 1, 'formation_energy': [-1.982, -0.15, 1.92, 1.37, 0.86, 0.88, -0.36, 0.38], 'name': 'O', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'O': 1}}, 'CH2-H_s': {'n_sites': 1, 'formation_energy': [1.49, 1.45, 3.43, 3.97, 1.925, 1.53, 1.34, 2.875], 'name': 'CH2-H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'H': 3, 'C': 1}}, 'h': {'n_sites': 1, 'formation_energy': 0, 'name': 'h', 'frequencies': [], 'site': 'h', 'total': 1.0, 'type': 'site', 'composition': {}, 'site_names': ['111']}, 'CH2_s': {'n_sites': 1, 'formation_energy': [1.291, 1.35, 2.66, 3.04, 1.65, 1.21, 0.66, 2.31], 'name': 'CH2', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'H': 2, 'C': 1}}, 'CO-O_s': {'n_sites': 1, 'formation_energy': [0.17, 0.74, 3.4, 2.7, 1.8, 1.7, 0.89, 1.8], 'name': 'CO-O', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'C': 1, 'O': 2}}, 'C-H_s': {'n_sites': 1, 'formation_energy': [2.321, 2.64, 5.84, 6.61, 3.155, 3.13, 1.71, 4.995], 'name': 'C-H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'H': 1, 'C': 1}}, 'C_s': {'n_sites': 1, 'formation_energy': [1.852, 1.99, 4.77, 5.68, 2.54, 2.16, 0.9, 4.27], 'name': 'C', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'C': 1}}, 's': {'n_sites': 1, 'formation_energy': 0, 'name': 's', 'frequencies': [], 'site': 's', 'total': 1.0, 'type': 'site', 'composition': {}, 'site_names': ['111']}, 'CH-H_s': {'n_sites': 1, 'formation_energy': [1.511, 2.05, 4.26, 4.94, 2.25, 1.8, 1.0, 3.51], 'name': 'CH-H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'transition_state', 'composition': {'H': 2, 'C': 1}}, 'CH_s': {'n_sites': 1, 'formation_energy': [1.321, 1.24, 3.24, 4.01, 1.755, 1.23, 0.31, 2.795], 'name': 'CH', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 's', 'type': 'adsorbate', 'composition': {'H': 1, 'C': 1}}, 'H_h': {'n_sites': 1, 'formation_energy': [-0.5, -0.33, 0.17, 0.23, -0.395, -0.35, 0.0, -0.075], 'name': 'H', 'frequencies': [], 'formation_energy_source': ['This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw', 'This Work, BEEF-vdw'], 'site': 'h', 'type': 'adsorbate', 'composition': {'H': 1}}}
+
+standard_coadsorbate_coverage = 'min'
+
+standard_coverage = 'min'
+
+surface_names = ('Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni', 'Cu')
+
+temperature = 1123
+
+thermodynamic_corrections = ['gas', 'adsorbate']
+
+thermodynamic_variables = ['temperature', 'gas_pressures', 'voltage', 'beta', 'pH', 'Upzc', 'gas_thermo_mode', 'adsorbate_thermo_mode']
+
+tolerance = 1e-50
+
+total_coefficient_dict = {'CH_s': array([ 0.73756,  0.     , -0.23999]), 'O_s': array([ 0.,  1.,  0.]), 'CH2-H_s': array([ 0.59284,  0.02345,  0.45218]), 'CH2_s': array([ 0.48469,  0.     ,  0.30748]), 'CH3-H_s': array([ 0.31772,  0.     ,  0.57791]), 'C-H_s': array([ 0.98968,  0.1456 ,  0.75793]), 'CO_s': array([ 0.     ,  0.43068,  0.20916]), 'C_s': array([ 1.,  0., -0.]), 'H-H_h': array([ 0.04106,  0.3172 ,  0.20278]), 'C-O_s': array([ 0.77989,  0.45182,  1.24222]), 'CH-H_s': array([ 0.8003 ,  0.07078,  0.22221]), 'CH3_s': array([ 0.21621,  0.     ,  0.32575]), 'H_h': array([ 0.11385,  0.     , -0.5001 ]), 'CO-O_s': array([ 0.22459,  0.60844,  0.74976])}
+
+transition_state_coefficient_matrix = array([[ 0.10784884,  0.        ,  0.11677471],
+       [ 1.05548672,  0.        ,  0.61229642],
+       [ 0.64722251,  0.64722251,  1.57165182],
+       [ 0.82998814,  0.        ,  0.15835921],
+       [ 0.60311627,  0.        ,  0.42968349],
+       [ 0.31336407,  0.        ,  0.59107518],
+       [ 0.        ,  0.82379862,  1.34951976]])
+
+transition_state_cross_interaction_mode = 'transition_state_scaling'
+
+transition_state_names = ('H-H_h', 'C-H_s', 'C-O_s', 'CH-H_s', 'CH2-H_s', 'CH3-H_s', 'CO-O_s')
+
+transition_state_scaling_coefficients = [[0.4736444538866465, 0.59051389183957714], [0.94760220608415191, 1.0861922817749876], [0.64722250618470323, 1.5716518165647808], [0.97483955368913744, 0.87982821236255615], [1.0076457170892972, 0.62377621118614934], [0.94941548119680486, 0.75660576671562796], [0.57580914025614027, 1.2290835184727618]]
+
+transition_state_scaling_matrix = array([[ 0.94728891,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.        ,  0.        ,  0.59051389],
+       [ 0.94760221,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.94760221,  0.        ,  1.08619228],
+       [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.64722251,  0.64722251,  1.57165182],
+       [ 0.97483955,  0.        ,  0.        ,  0.97483955,  0.        ,
+         0.        ,  0.        ,  0.87982821],
+       [ 1.00764572,  1.00764572,  0.        ,  0.        ,  0.        ,
+         0.        ,  0.        ,  0.62377621],
+       [ 0.94941548,  0.        ,  0.94941548,  0.        ,  0.        ,
+         0.        ,  0.        ,  0.75660577],
+       [ 0.        ,  0.        ,  0.        ,  0.        ,  0.57580914,
+         0.        ,  0.57580914,  1.22908352]])
+
+transition_state_scaling_mode = 'initial_state'
+
+transition_state_scaling_parameters = {}
+
+verbose = 1
+
+stdout = """mapper_iteration_0: status - 64 points do not have valid solution.
+rootfinding_iteration_1: cancel - stationary point or singular jacobian (residual = 0.0690809973889)
+minresid_iteration_0: fail - [ 8.00, 5.00] using coverages from [ 8.00, 5.00]; initial residual was 0.0690809973889 (residual = 0.0690809973889)
+minresid_iteration_1: success - [ 8.00, 5.00] using coverages from [ 8.00, 5.00]
+minresid_iteration_0: success - [ 8.00, 3.86] using coverages from [ 8.00, 3.86]
+minresid_iteration_0: success - [ 8.00, 2.71] using coverages from [ 8.00, 2.71]
+minresid_iteration_0: success - [ 8.00, 1.57] using coverages from [ 8.00, 1.57]
+minresid_iteration_0: success - [ 8.00, 0.43] using coverages from [ 8.00, 0.43]
+minresid_iteration_0: success - [ 8.00,-0.71] using coverages from [ 8.00,-0.71]
+minresid_iteration_0: success - [ 8.00,-1.86] using coverages from [ 8.00,-1.86]
+minresid_iteration_0: success - [ 8.00,-3.00] using coverages from [ 8.00,-3.00]
+minresid_iteration_0: success - [ 6.86, 5.00] using coverages from [ 6.86, 5.00]
+minresid_iteration_0: success - [ 6.86, 3.86] using coverages from [ 6.86, 3.86]
+minresid_iteration_0: success - [ 6.86, 2.71] using coverages from [ 6.86, 2.71]
+minresid_iteration_0: success - [ 6.86, 1.57] using coverages from [ 6.86, 1.57]
+minresid_iteration_0: success - [ 6.86, 0.43] using coverages from [ 6.86, 0.43]
+minresid_iteration_0: success - [ 6.86,-0.71] using coverages from [ 6.86,-0.71]
+minresid_iteration_0: success - [ 6.86,-1.86] using coverages from [ 6.86,-1.86]
+minresid_iteration_0: success - [ 6.86,-3.00] using coverages from [ 6.86,-3.00]
+minresid_iteration_0: success - [ 5.71, 5.00] using coverages from [ 5.71, 5.00]
+minresid_iteration_0: success - [ 5.71, 3.86] using coverages from [ 5.71, 3.86]
+minresid_iteration_0: success - [ 5.71, 2.71] using coverages from [ 5.71, 2.71]
+minresid_iteration_0: success - [ 5.71, 1.57] using coverages from [ 5.71, 1.57]
+minresid_iteration_0: success - [ 5.71, 0.43] using coverages from [ 5.71, 0.43]
+minresid_iteration_0: success - [ 5.71,-0.71] using coverages from [ 5.71,-0.71]
+minresid_iteration_0: success - [ 5.71,-1.86] using coverages from [ 5.71,-1.86]
+minresid_iteration_0: success - [ 5.71,-3.00] using coverages from [ 5.71,-3.00]
+minresid_iteration_0: success - [ 4.57, 5.00] using coverages from [ 4.57, 5.00]
+minresid_iteration_0: success - [ 4.57, 3.86] using coverages from [ 4.57, 3.86]
+minresid_iteration_0: success - [ 4.57, 2.71] using coverages from [ 4.57, 2.71]
+minresid_iteration_0: success - [ 4.57, 1.57] using coverages from [ 4.57, 1.57]
+minresid_iteration_0: success - [ 4.57, 0.43] using coverages from [ 4.57, 0.43]
+minresid_iteration_0: success - [ 4.57,-0.71] using coverages from [ 4.57,-0.71]
+minresid_iteration_0: success - [ 4.57,-1.86] using coverages from [ 4.57,-1.86]
+minresid_iteration_0: success - [ 4.57,-3.00] using coverages from [ 4.57,-3.00]
+minresid_iteration_0: success - [ 3.43, 5.00] using coverages from [ 3.43, 5.00]
+minresid_iteration_0: success - [ 3.43, 3.86] using coverages from [ 3.43, 3.86]
+minresid_iteration_0: success - [ 3.43, 2.71] using coverages from [ 3.43, 2.71]
+minresid_iteration_0: success - [ 3.43, 1.57] using coverages from [ 3.43, 1.57]
+minresid_iteration_0: success - [ 3.43, 0.43] using coverages from [ 3.43, 0.43]
+minresid_iteration_0: success - [ 3.43,-0.71] using coverages from [ 3.43,-0.71]
+minresid_iteration_0: success - [ 3.43,-1.86] using coverages from [ 3.43,-1.86]
+minresid_iteration_0: success - [ 3.43,-3.00] using coverages from [ 3.43,-3.00]
+rootfinding_iteration_7: fail - stagnated or diverging (residual = 34.2147714427)
+minresid_iteration_0: fail - [ 2.29, 5.00] using coverages from [ 2.29, 5.00]; initial residual was 99936.761257 (residual = 34.2147714427)
+rootfinding_iteration_2: fail - stagnated or diverging (residual = 19.7164845796)
+minresid_iteration_1: fail - [ 2.29, 5.00] using coverages from [ 3.43, 5.00]; initial residual was 38.2221922274 (residual = 19.7164845796)
+rootfinding_iteration_2: fail - stagnated or diverging (residual = 19.7164845796)
+minresid_iteration_2: fail - [ 2.29, 5.00] using coverages from [ 3.43, 3.86]; initial residual was 38.2221922274 (residual = 19.7164845796)
+rootfinding_iteration_2: fail - stagnated or diverging (residual = 19.7164845796)
+bisection_iteration_1: fail - move from [ 3.43, 5.00] to [ 2.29, 5.00]
+bisection_iteration_2: success - moved from [ 3.43, 5.00] to [ 2.86, 5.00]
+rootfinding_iteration_2: fail - stagnated or diverging (residual = 22.2948036235)
+bisection_iteration_1: fail - move from [ 2.86, 5.00] to [ 2.29, 5.00]
+bisection_iteration_2: success - moved from [ 2.86, 5.00] to [ 2.57, 5.00]
+bisection_iteration_1: success - moved from [ 2.57, 5.00] to [ 2.29, 5.00]
+minresid_iteration_0: success - [ 2.29, 5.00] using coverages from [3.4285714285714284, 5.0]
+rootfinding_iteration_7: fail - stagnated or diverging (residual = 34.2147714427)
+minresid_iteration_0: fail - [ 2.29, 3.86] using coverages from [ 2.29, 3.86]; initial residual was 99936.761257 (residual = 34.2147714427)
+minresid_iteration_1: success - [ 2.29, 3.86] using coverages from [ 2.29, 5.00]
+rootfinding_iteration_7: fail - stagnated or diverging (residual = 34.2147714427)
+minresid_iteration_0: fail - [ 2.29, 2.71] using coverages from [ 2.29, 2.71]; initial residual was 99936.761257 (residual = 34.2147714427)
+minresid_iteration_1: success - [ 2.29, 2.71] using coverages from [ 2.29, 3.86]
+rootfinding_iteration_7: fail - stagnated or diverging (residual = 34.214769538)
+minresid_iteration_0: fail - [ 2.29, 1.57] using coverages from [ 2.29, 1.57]; initial residual was 99936.761257 (residual = 34.214769538)
+minresid_iteration_1: success - [ 2.29, 1.57] using coverages from [ 2.29, 2.71]
+rootfinding_iteration_7: fail - stagnated or diverging (residual = 34.1860733978)
+minresid_iteration_0: fail - [ 2.29, 0.43] using coverages from [ 2.29, 0.43]; initial residual was 3142658.82533 (residual = 34.1860733978)
+minresid_iteration_1: success - [ 2.29, 0.43] using coverages from [ 2.29, 1.57]
+minresid_iteration_0: success - [ 2.29,-0.71] using coverages from [ 2.29,-0.71]
+minresid_iteration_0: success - [ 2.29,-1.86] using coverages from [ 2.29,-1.86]
+minresid_iteration_0: success - [ 2.29,-3.00] using coverages from [ 2.29,-3.00]
+rootfinding_iteration_3: fail - stagnated or diverging (residual = 16568.5928478)
+minresid_iteration_0: fail - [ 1.14, 5.00] using coverages from [ 1.14, 5.00]; initial residual was 349948.509506 (residual = 16568.5928478)
+minresid_iteration_1: success - [ 1.14, 5.00] using coverages from [ 2.29, 5.00]
+rootfinding_iteration_3: fail - stagnated or diverging (residual = 16568.5928478)
+minresid_iteration_0: fail - [ 1.14, 3.86] using coverages from [ 1.14, 3.86]; initial residual was 349948.509506 (residual = 16568.5928478)
+minresid_iteration_1: success - [ 1.14, 3.86] using coverages from [ 1.14, 5.00]
+rootfinding_iteration_3: fail - stagnated or diverging (residual = 16568.5928478)
+minresid_iteration_0: fail - [ 1.14, 2.71] using coverages from [ 1.14, 2.71]; initial residual was 349948.509506 (residual = 16568.5928478)
+minresid_iteration_1: success - [ 1.14, 2.71] using coverages from [ 1.14, 3.86]
+rootfinding_iteration_3: fail - stagnated or diverging (residual = 16568.5922543)
+minresid_iteration_0: fail - [ 1.14, 1.57] using coverages from [ 1.14, 1.57]; initial residual was 349948.509506 (residual = 16568.5922543)
+minresid_iteration_1: success - [ 1.14, 1.57] using coverages from [ 1.14, 2.71]
+rootfinding_iteration_3: fail - stagnated or diverging (residual = 16558.6861348)
+minresid_iteration_0: fail - [ 1.14, 0.43] using coverages from [ 1.14, 0.43]; initial residual was 3141041.18436 (residual = 16558.6861348)
+minresid_iteration_1: success - [ 1.14, 0.43] using coverages from [ 1.14, 1.57]
+rootfinding_iteration_4: fail - stagnated or diverging (residual = 7515.76197252)
+minresid_iteration_0: fail - [ 1.14,-0.71] using coverages from [ 1.14,-0.71]; initial residual was 508053978.498 (residual = 7515.76197252)
+minresid_iteration_1: success - [ 1.14,-0.71] using coverages from [ 1.14, 0.43]
+minresid_iteration_0: success - [ 1.14,-1.86] using coverages from [ 1.14,-1.86]
+minresid_iteration_0: success - [ 1.14,-3.00] using coverages from [ 1.14,-3.00]
+minresid_iteration_0: success - [ 0.00, 5.00] using coverages from [ 0.00, 5.00]
+minresid_iteration_0: success - [ 0.00, 3.86] using coverages from [ 0.00, 3.86]
+minresid_iteration_0: success - [ 0.00, 2.71] using coverages from [ 0.00, 2.71]
+minresid_iteration_0: success - [ 0.00, 1.57] using coverages from [ 0.00, 1.57]
+minresid_iteration_0: success - [ 0.00, 0.43] using coverages from [ 0.00, 0.43]
+minresid_iteration_0: success - [ 0.00,-0.71] using coverages from [ 0.00,-0.71]
+minresid_iteration_0: success - [ 0.00,-1.86] using coverages from [ 0.00,-1.86]
+minresid_iteration_0: success - [ 0.00,-3.00] using coverages from [ 0.00,-3.00]
+mapper_iteration_1: status - 0 points do not have valid solution.
+initial_evaluation: success - initial guess at point [ 8.00, 5.00]
+initial_evaluation: success - initial guess at point [ 8.00, 3.86]
+initial_evaluation: success - initial guess at point [ 8.00, 2.71]
+initial_evaluation: success - initial guess at point [ 8.00, 1.57]
+initial_evaluation: success - initial guess at point [ 8.00, 0.43]
+initial_evaluation: success - initial guess at point [ 8.00,-0.71]
+initial_evaluation: success - initial guess at point [ 8.00,-1.86]
+initial_evaluation: success - initial guess at point [ 8.00,-3.00]
+initial_evaluation: success - initial guess at point [ 6.86, 5.00]
+initial_evaluation: success - initial guess at point [ 6.86, 3.86]
+initial_evaluation: success - initial guess at point [ 6.86, 2.71]
+initial_evaluation: success - initial guess at point [ 6.86, 1.57]
+initial_evaluation: success - initial guess at point [ 6.86, 0.43]
+initial_evaluation: success - initial guess at point [ 6.86,-0.71]
+initial_evaluation: success - initial guess at point [ 6.86,-1.86]
+initial_evaluation: success - initial guess at point [ 6.86,-3.00]
+initial_evaluation: success - initial guess at point [ 5.71, 5.00]
+initial_evaluation: success - initial guess at point [ 5.71, 3.86]
+initial_evaluation: success - initial guess at point [ 5.71, 2.71]
+initial_evaluation: success - initial guess at point [ 5.71, 1.57]
+initial_evaluation: success - initial guess at point [ 5.71, 0.43]
+initial_evaluation: success - initial guess at point [ 5.71,-0.71]
+initial_evaluation: success - initial guess at point [ 5.71,-1.86]
+initial_evaluation: success - initial guess at point [ 5.71,-3.00]
+initial_evaluation: success - initial guess at point [ 4.57, 5.00]
+initial_evaluation: success - initial guess at point [ 4.57, 3.86]
+initial_evaluation: success - initial guess at point [ 4.57, 2.71]
+initial_evaluation: success - initial guess at point [ 4.57, 1.57]
+initial_evaluation: success - initial guess at point [ 4.57, 0.43]
+initial_evaluation: success - initial guess at point [ 4.57,-0.71]
+initial_evaluation: success - initial guess at point [ 4.57,-1.86]
+initial_evaluation: success - initial guess at point [ 4.57,-3.00]
+initial_evaluation: success - initial guess at point [ 3.43, 5.00]
+initial_evaluation: success - initial guess at point [ 3.43, 3.86]
+initial_evaluation: success - initial guess at point [ 3.43, 2.71]
+initial_evaluation: success - initial guess at point [ 3.43, 1.57]
+initial_evaluation: success - initial guess at point [ 3.43, 0.43]
+initial_evaluation: success - initial guess at point [ 3.43,-0.71]
+initial_evaluation: success - initial guess at point [ 3.43,-1.86]
+initial_evaluation: success - initial guess at point [ 3.43,-3.00]
+initial_evaluation: invalid - initial guess at point [ 2.86, 5.00]
+initial_evaluation: invalid - initial guess at point [ 2.57, 5.00]
+initial_evaluation: success - initial guess at point [ 2.29, 5.00]
+initial_evaluation: success - initial guess at point [ 2.29, 3.86]
+initial_evaluation: success - initial guess at point [ 2.29, 2.71]
+initial_evaluation: success - initial guess at point [ 2.29, 1.57]
+initial_evaluation: success - initial guess at point [ 2.29, 0.43]
+initial_evaluation: success - initial guess at point [ 2.29,-0.71]
+initial_evaluation: success - initial guess at point [ 2.29,-1.86]
+initial_evaluation: success - initial guess at point [ 2.29,-3.00]
+initial_evaluation: success - initial guess at point [ 1.14, 5.00]
+initial_evaluation: success - initial guess at point [ 1.14, 3.86]
+initial_evaluation: success - initial guess at point [ 1.14, 2.71]
+initial_evaluation: success - initial guess at point [ 1.14, 1.57]
+initial_evaluation: success - initial guess at point [ 1.14, 0.43]
+initial_evaluation: success - initial guess at point [ 1.14,-0.71]
+initial_evaluation: success - initial guess at point [ 1.14,-1.86]
+initial_evaluation: success - initial guess at point [ 1.14,-3.00]
+initial_evaluation: success - initial guess at point [ 0.00, 5.00]
+initial_evaluation: success - initial guess at point [ 0.00, 3.86]
+initial_evaluation: success - initial guess at point [ 0.00, 2.71]
+initial_evaluation: success - initial guess at point [ 0.00, 1.57]
+initial_evaluation: success - initial guess at point [ 0.00, 0.43]
+initial_evaluation: success - initial guess at point [ 0.00,-0.71]
+initial_evaluation: success - initial guess at point [ 0.00,-1.86]
+initial_evaluation: success - initial guess at point [ 0.00,-3.00]
+mapper_iteration_0: status - 0 points do not have valid solution."""
