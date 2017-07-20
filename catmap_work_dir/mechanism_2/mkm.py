@@ -36,7 +36,7 @@ font.set_weight('bold')
 
 
 #change to reflect your descriptors
-descriptor_labels = ['$\mathbf{C}$', '$\mathbf{O}$']
+descriptor_labels = ['$\Delta E(C^*)/eV$', '$\Delta E(O^*)/eV$']
 adjust_kwargs = {'left':0.2,'right':0.8,'bottom':0.2}
 
 ###### Run MKM ########
@@ -56,8 +56,8 @@ vm.max = 1e3 #maximum rate to plot
 fig = vm.plot(save='rate.pdf') #draw the plot and save it as "rate.pdf"
 
 vm.plot_variable = 'coverage' #tell the model which output to plot
-vm.log_scale = True #rates should be plotted on a log-scale
-vm.min = 1e-5 #minimum rate to plot
+vm.log_scale = False #rates should be plotted on a log-scale
+vm.min = 0 #minimum rate to plot
 vm.max = 1 #maximum rate to plot
 fig = vm.plot(save='coverage.pdf') #draw the plot and save it as "coverage.pdf"
 
@@ -103,5 +103,8 @@ vm.include_labels = ['O_s']
 vm.subplots_adjust_kwargs = adjust_kwargs 
 fig = vm.plot(save='O_s.pdf')
 custom_fig(fig, '$\mathbf{O_{s} Coverage}$','O_s.pdf')
+
+sa = analyze.ScalingAnalysis(model)
+sa.plot(save='scaling.pdf')
 
 
