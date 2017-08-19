@@ -1,5 +1,5 @@
 # input all necessary steps here (example is shown)
-# Mechanism 2: O* recombination 
+# Mechanism 2: O* recombination with Harmonic Adsorbates
 rxn_expressions = [
 
                 'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 
@@ -26,7 +26,7 @@ descriptor_names = ['C_s','O_s']
 descriptor_ranges = [[0.5,6.25],[-2.5,2.5]]
 
 #on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
-resolution = 13
+resolution = 49
 
 #what temperature is DRM usually done at
 temperature = 1123

@@ -1,14 +1,14 @@
 #!/home/vossj/suncat/bin/python
 
-#SBATCH -p iric
-#SBATCH --job-name=opt.py
+#SBATCH -p normal
+#SBATCH --job-name=m3.py
 #SBATCH --output=myjob.out
 #SBATCH --error=myjob.err
-#SBATCH --time=2:00:00                                 #default is 20 hours
+#SBATCH --time=48:00:00                                 #default is 20 hours
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4000
 #SBATCH --mail-type=END,FAIL                            #get emailed about job BEGIN, END, or FAIL
-#SBATCH --mail-user=allegralatimer@gmail.com
+#SBATCH --mail-user=sanand94@stanford.edu
 #SBATCH --ntasks-per-node=16                            #task to run per node; each node has 16 cores
 
 from catmap import ReactionModel

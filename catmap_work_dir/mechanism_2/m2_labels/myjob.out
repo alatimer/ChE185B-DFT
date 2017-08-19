@@ -1,0 +1,7 @@
+header_evaluation: fail - could not save pickle = <module 'cPickle' from '/home/vossj/suncat/lib/python2.7/lib-dynload/cPickle.so'>
+
+
+header_evaluation: fail - could not save pickle = <module 'cPickle' from '/home/vossj/suncat/lib/python2.7/lib-dynload/cPickle.so'>
+
+
+input_evaluation: success - loaded all data from input file
