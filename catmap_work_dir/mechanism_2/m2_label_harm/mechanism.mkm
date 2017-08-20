@@ -20,13 +20,13 @@ rxn_expressions = [
                    ]
 
 #change to reflect your surfaces
-surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni', 'Cu']
+surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt', 'Ni', 'Cu','Co','Ni2','Ag2','Pt2','Cu2','Rh2','Ru2']
 
 descriptor_names = ['C_s','O_s']
 descriptor_ranges = [[0.5,6.25],[-2.5,2.5]]
 
 #on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
-resolution = 49
+resolution = 97
 
 #what temperature is DRM usually done at
 temperature = 1123

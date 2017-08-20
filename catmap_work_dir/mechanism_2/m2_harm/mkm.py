@@ -1,10 +1,10 @@
 #!/home/vossj/suncat/bin/python
 
 #SBATCH -p normal
-#SBATCH --job-name=mkm.py
+#SBATCH --job-name=m2_harm.py
 #SBATCH --output=myjob.out
 #SBATCH --error=myjob.err
-#SBATCH --time=10:00:00                                 #default is 20 hours
+#SBATCH --time=48:00:00                                 #default is 20 hours
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4000
 #SBATCH --mail-type=END,FAIL                            #get emailed about job BEGIN, END, or FAIL
