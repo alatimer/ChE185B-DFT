@@ -17,7 +17,13 @@ import matplotlib as mpl
 from matplotlib.font_manager import FontProperties
 from catmap import analyze
 
-def custom_fig(fig, title, save_name):
+
+#Put points in here manually that you'd like to show up on all plots (ie Ni and Co C & O binding energies)
+pts = [
+        (4,0)
+        ]
+
+def custom_fig(fig, title, save_name,annot=True):
     for j, ax in enumerate(fig.axes):
         if j == 0:
             ax.set_ylabel(descriptor_labels[1],size = 25,fontproperties=font)
@@ -25,6 +31,9 @@ def custom_fig(fig, title, save_name):
             ax.set_title(title,size = 25,fontproperties=font)
             #ax.set_xticklabels([300,400,500,600,700,800],size=15)
             #ax.set_yticklabels([' ',-8,-7,-6,-5,-4,-3,-2,-1,0],size=15)
+        if annot==True:
+            for pt in pts:
+                ax.plot([pt[0]],[pt[1]],'wo',markersize=10)
     fig.savefig(save_name)
     return
 
@@ -75,7 +84,7 @@ vm.min = 1e-25
 vm.max = 1e0
 vm.include_labels = ['CO_g']
 vm.subplots_adjust_kwargs = adjust_kwargs 
-fig = vm.plot(save='CO_g.pdf')
+fig = vm.plot(save='CO_tof.pdf')
 custom_fig(fig, '$\mathbf{CO TOF}$','CO_tof.pdf')
 
 #example of how to plot selectivity to a product
