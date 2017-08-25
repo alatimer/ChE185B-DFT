@@ -1,0 +1,4 @@
+/home/sanand94/che185b-drm/src/ase/ase/structure.py:5: UserWarning: Moved to ase.build
+  warnings.warn('Moved to ase.build')
+/home/vossj/suncat/lib/python2.7/site-packages/matplotlib-1.4.0-py2.7-linux-x86_64.egg/matplotlib/tri/triangulation.py:110: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+  self._neighbors)
