@@ -1,0 +1,4 @@
+/home/users/sanand94/che185b-drm/src/ase/ase/structure.py:5: UserWarning: Moved to ase.build
+  warnings.warn('Moved to ase.build')
+/home/users/sanand94/.local/lib/python2.7/site-packages/matplotlib/contour.py:967: UserWarning: The following kwargs were not used by contour: 'title'
+  s)
