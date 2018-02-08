@@ -1,0 +1,22 @@
+/home/sanand94/che185b-drm/src/ase/ase/utils/geometry.py:8: UserWarning: Moved to ase.geometry and ase.build
+  warnings.warn('Moved to ase.geometry and ase.build')
+/home/sanand94/che185b-drm/src/ase/ase/lattice/spacegroup.py:5: UserWarning: Moved to ase.spacegroup
+  warnings.warn('Moved to ase.spacegroup')
+/home/sanand94/che185b-drm/src/ase/ase/lattice/surface.py:17: UserWarning: Moved to ase.build
+  warnings.warn('Moved to ase.build')
+[sh-2-28.local:26793] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26787] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26803] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26811] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26791] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26796] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26808] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26806] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26788] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26789] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26799] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26800] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26805] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26809] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26810] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[sh-2-28.local:26807] mca: base: component_find: unable to open /home/vossj/suncat/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
