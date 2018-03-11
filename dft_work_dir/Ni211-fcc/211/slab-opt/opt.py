@@ -21,6 +21,7 @@ from ase import *
 from ase.io import read,write
 from ase.optimize import QuasiNewton
 from espresso import espresso
+#import espresso
 from ase.dft.bee import BEEF_Ensemble
 import cPickle as pickle
 import os.path
