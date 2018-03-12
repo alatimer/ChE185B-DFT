@@ -1,0 +1,10 @@
+/home/sanand94/che185b-drm/src/ase/ase/structure.py:5: UserWarning: Moved to ase.build
+  warnings.warn('Moved to ase.build')
+Traceback (most recent call last):
+  File "/var/spool/slurmd/job20801212/slurm_script", line 45, in <module>
+    model = ReactionModel(setup_file=mkm_file)
+  File "/home/sanand94/che185b-drm/src/catmap/catmap/model.py", line 121, in __init__
+    self.load(self.setup_file)
+  File "/home/sanand94/che185b-drm/src/catmap/catmap/model.py", line 392, in load
+    'exists and is spelled properly.')
+AttributeError: Thermodynamics ThermoCorrections could not be imported. Ensure that the class exists and is spelled properly.
