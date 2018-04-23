@@ -126,7 +126,7 @@ Ru	211	O	-0.1	[573,388,97]	This Work, BEEF-vdw
 Ru	211	O-H	0.267	[]	This Work, BEEF-vdw
 Ru	211	OH	-0.688	[3771,646,613,417,266,75]	This Work, BEEF-vdw
 Ru	211	CO-O	0.0	[579,516,453,449,363]	This Work, BEEF-vdw
-Ni	211	C	1.785	[498,461,382]	This Work, BEEF-vdw
-Ni	211	O	-0.624	[573,388,97]	This Work, BEEF-vdw
-Co	211	C	1.946	[498,461,382]	This Work, BEEF-vdw
-Co	211	O	-0.860	[573,388,97]	This Work, BEEF-vdw
+Ni	211	C	1.371	[498,461,382]	This Work, BEEF-vdw
+Ni	211	O	-0.728	[573,388,97]	This Work, BEEF-vdw
+Co	211	C	1.607	[498,461,382]	This Work, BEEF-vdw
+Co	211	O	-1.206	[573,388,97]	This Work, BEEF-vdw
