@@ -1,0 +1,77 @@
+# DRM 211 Facet
+# Updated 1/30
+rxn_expressions = [
+
+                'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h',
+                'CO2_g + 2*_s <-> CO-O_s + *_s <-> CO_s + O_s',
+                'CH3_s + *_h <-> CH2_s + H_h',
+                'CH2_s + *_h <-> CH_s + H_h',
+                'CH_s + *_h  <-> C_s + H_h',
+                'C_s + O_s <-> CO_s + *_s',
+                'CO_s <-> CO_g + *_s',
+                '2H_h <-> H2_g + 2*_h'
+
+                   ]
+
+#change to reflect your surfaces
+surface_names = ['Ru', 'Rh', 'Ag', 'Pd', 'Pt', 'Ni', 'Cu','Co']
+#surface_names = ['Ru', 'Rh', 'Ag', 'Pd', 'Pt', 'Ni', 'Cu']
+
+
+descriptor_names = ['C_s','O_s']
+#range you want descriptors to run from
+descriptor_ranges = [[1,6.25],[-2.5,2.5]]
+
+#on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
+resolution = 49
+
+#what temperature is DRM usually done at
+temperature = 1123
+
+#partial pressures of all species; defining all gas species in your system in atm; you can look into publicatinos to find out
+#see above citation
+species_definitions = {}
+species_definitions['CH4_g'] = {'pressure':0.0196}
+species_definitions['CO2_g'] = {'pressure':0.0196}
+species_definitions['CO_g'] = {'pressure':0.0004}
+species_definitions['H2_g'] = {'pressure':0.0004}
+
+#h sites are included because we assume H does not take up a full site
+species_definitions['s'] = {'site_names':['211'], 'total':1.0}
+species_definitions['h'] = {'total':1.0, 'site_names':['211']}
+
+data_file = 'DRM.pkl'
+input_file = 'energies.txt'
+
+gas_thermo_mode = 'shomate_gas'
+adsorbate_thermo_mode = 'harmonic_adsorbate'
+estimate_frequencies = False
+
+#dictionary for storing TS scaling coeffs. Keys are arbitrary
+#but must match definition provided in scaling_constraint_dict.
+#transition_state_scaling_parameters = {'CH-H':[0.904,1.085]}
+#dictionary for constraining generalized linear scaling.
+#initial: when you're going towards an constant species (gas)
+#final: when you're coming from a constant species (first step) (gas)
+scaling_constraint_dict = {
+                  'CH3-H_s':'final_state',
+                  'CO-O_s':'final_state',
+
+                	'C_s': ['+',0,None],
+                	'CH3_s': ['+',0,None],
+                	'CH2_s': ['+',0,None],
+                	'CH_s': ['+',0,None],
+                	'H_h': ['+',0,None],
+
+                	'O_s': [0,'+',None],
+                	'CO_s': ['+','+',None]
+                    }
+
+decimal_precision = 100
+tolerance = 1e-50
+max_tolerance_iterations = 100
+max_rootfinding_iterations = 100
+max_bisections = 5
+
+#List here range (0:X) where X is last elementary reaction you have
+rxn_mechanisms = {'methane':[0,1,2,3,4,5,6,7]}

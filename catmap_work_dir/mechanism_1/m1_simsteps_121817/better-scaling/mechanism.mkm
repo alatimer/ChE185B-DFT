@@ -1,0 +1,110 @@
+# input all necessary steps here (example is shown)
+# Updated 9/21
+rxn_expressions = [
+
+                'CH4_g + *_s + *_h <-> CH3-H_s + *_h <-> CH3_s + H_h', 
+                'CO2_g + 2*_s <-> CO-O_s + *_s <-> CO_s + O_s',
+                'CH3_s + *_h <-> CH2_s + H_h',
+                'CH2_s + *_h <-> CH_s + H_h',
+                'CH_s + *_h  <-> C_s + H_h',
+                'C_s + O_s <-> CO_s + *_s',
+                'CO_s <-> CO_g + *_s',
+                '2H_h <-> H2_g + 2*_h'
+
+                   ]
+
+#change to reflect your surfaces
+surface_names = ['Ru', 'Rh', 'Au', 'Ag', 'Pd', 'Pt','Ni','Cu','Co']
+#surface_names = ['Rh', 'Au', 'Ag', 'Pd', 'Pt']
+
+descriptor_names = ['C_s','O_s']
+#range you want descriptors to run from
+descriptor_ranges = [[1,6.25],[-2.5,2.5]]
+
+#on your map, how many points are you sampling (7 is a starting resolution that is low; but publication quality is higher and needs to be built up - always multiply by two and then subtract one)
+resolution = 25
+
+#what temperature is DRM usually done at
+temperature = 1123
+
+#partial pressures of all species; defining all gas species in your system in atm; you can look into publicatinos to find out 
+#see above citation
+species_definitions = {}
+species_definitions['CH4_g'] = {'pressure':0.0196}
+species_definitions['CO2_g'] = {'pressure':0.0196}
+species_definitions['CO_g'] = {'pressure':0.0004}
+species_definitions['H2_g'] = {'pressure':0.0004}
+
+#h sites are included because we assume H does not take up a full site
+species_definitions['s'] = {'site_names':['111'], 'total':1.0}
+species_definitions['h'] = {'total':1.0, 'site_names':['111']}
+
+data_file = 'DRM.pkl'
+input_file = 'energies.txt'
+
+# Leave this the same - but this is stating how do I want to treat the entropy corrections of the gas state species and the adsorbate species; we assumed frozen adsorbates (no entropic contributions from the adsorbate species); we also assumed that all of our gasses had the same entropy - but the shomate entropy will make sure to account for this
+# Allegra may provide us with adsorbate vibrations (harmonic oscillator species) because they stay relatively constant
+
+gas_thermo_mode = 'shomate_gas'
+adsorbate_thermo_mode = 'harmonic_adsorbate'
+estimate_frequencies = False
+
+#dictionary for storing TS scaling coeffs. Keys are arbitrary
+#but must match definition provided in scaling_constraint_dict.
+#transition_state_scaling_parameters = {'CH-H':[0.904,1.085]}
+#dictionary for constraining generalized linear scaling.
+#initial: when you're going towards an constant species (gas)
+#final: when you're coming from a constant species (first step) (gas)
+scaling_constraint_dict = {
+					
+					# Use this as a template
+                    'CH3-H_s':'final_state',
+                    'CO-O_s':'final_state',
+                    
+                	'C_s': ['+',0,None],
+                	'CH3_s': ['+',0,None],
+                	'CH2_s': ['+',0,None],
+                	'CH_s': ['+',0,None],
+                	'H_h': ['+',0,None],
+
+                	'O_s': [0,'+',None],
+                	'CO_s': ['+','+',None]
+                                        
+                    # '+' -> constrain positive
+                    # '-' -> constrain negative
+                    # 0 -> constrain to 0
+                    # 1.3 -> constrain to 1.3 (or other number)
+                    # None -> No constraint
+
+                    #for each adsorbate with a constraint, the key
+                    #should be the adsorbate name and the value
+                    #should be a list of len(descriptors)+1
+                    #which defines the constraint on each descriptor
+                    #coefficient and the intercept
+
+                    #specify slope only, but fit intercept. This is useful
+                    #for using slopes from literature when you are unsure about
+                    #the reference used.
+                    #'H-CH3_t': 'TS(CH3_t+H_h):[0.957]',
+
+                    #back to the "standard" way of fittng to initial/final state
+                    #'H-CH2_t': 'TS(H_h+CH2_t)',
+                    #'O-H2O': 'TS(OH+OH)',
+                    #'H-OH': 'TS(OH+H_h)',
+                    #'C-OH': 'TS(OH+C_f)',
+                    #'O-H': 'TS(O+H_h)',
+
+                    }
+
+
+decimal_precision = 100
+tolerance = 1e-50
+max_tolerance_iterations = 100
+max_rootfinding_iterations = 100
+max_bisections = 5
+
+#List here range (0:X) where X is last elementary reaction you have
+rxn_mechanisms = {'methane':[0,1,2,3,4,5,6,7]}
+
+
+
