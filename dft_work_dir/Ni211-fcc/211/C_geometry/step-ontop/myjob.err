@@ -1,0 +1,7 @@
+/home/sanand94/che185b-drm/src/ase/ase/utils/geometry.py:8: UserWarning: Moved to ase.geometry and ase.build
+  warnings.warn('Moved to ase.geometry and ase.build')
+/home/sanand94/che185b-drm/src/ase/ase/lattice/spacegroup.py:5: UserWarning: Moved to ase.spacegroup
+  warnings.warn('Moved to ase.spacegroup')
+/home/sanand94/che185b-drm/src/ase/ase/lattice/surface.py:17: UserWarning: Moved to ase.build
+  warnings.warn('Moved to ase.build')
+slurmstepd: error: *** JOB 21104326 ON sh-8-5 CANCELLED AT 2018-03-25T09:19:42 DUE TO TIME LIMIT ***

@@ -1,6 +1,6 @@
 #!/home/vossj/suncat/bin/python
 
-#SBATCH -p normal
+#SBATCH -p normal,owners
 #SBATCH --job-name=opt.py
 #SBATCH --output=myjob.out
 #SBATCH --error=myjob.err
